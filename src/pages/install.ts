@@ -1,9 +1,7 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
-	const data = await fetch(
-		"https://dweb.mypinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng",
-	);
+	const data = await fetch("https://files-cli-install.vercel.app/script.sh");
 	const file = await data.blob();
 	const headers = new Headers();
 	headers.set("Content-Type", "application/octet-stream");
