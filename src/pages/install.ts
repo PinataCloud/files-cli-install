@@ -1,7 +1,9 @@
 import type { APIRoute } from "astro";
 
-export const GET: APIRoute = async ({ request }) => {
-	const data = await fetch("http://localhost:4321/script.sh");
+export const GET: APIRoute = async () => {
+	const data = await fetch(
+		"https://dweb.mypinata.cloud/ipfs/QmVLwvmGehsrNEvhcCnnsw5RQNseohgEkFNN1848zNzdng",
+	);
 	const file = await data.blob();
 	const headers = new Headers();
 	headers.set("Content-Type", "application/octet-stream");
