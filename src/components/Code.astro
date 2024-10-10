@@ -1,0 +1,55 @@
+---
+---
+
+<div class="code-box">
+			<code id="codeSnippet">
+			curl -fsSL https://cli.pinata.cloud/install | bash
+			</code>
+				<button id="copyButton">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="#888888" d="M472 16H160a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24m-8 328H168V48h296Z"/><path fill="#888888" d="M344 464H48V168h56v-32H40a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24v-64h-32Z"/></svg>
+				</button>
+	</div>
+
+	<style>
+	code {
+	background: #211D29;
+	padding: 2rem 4rem 2rem 2rem;
+	border-radius: 15px;
+	}
+
+	.code-box {
+			position: relative;
+	}
+
+	.code-box button {
+				position: absolute;
+			top: -5px;
+			right: 0;
+			background: none;
+			border: none;
+			cursor: pointer;
+			margin-right: 1rem;
+		}
+
+	</style>
+
+	<script is:inline>
+			document.addEventListener('DOMContentLoaded', (event) => {
+					const copyButton = document.getElementById('copyButton');
+					const codeSnippet = document.getElementById('codeSnippet');
+
+					if(copyButton && codeSnippet){
+					copyButton.addEventListener('click', () => {
+							const textContent = codeSnippet?.textContent?.trim() || '';
+							navigator.clipboard.writeText(textContent).then(() => {
+									if (copyButton instanceof HTMLElement) {
+											copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="m9.55 18l-5.7-5.7l1.425-1.425L9.55 15.15l9.175-9.175L20.15 7.4z"/></svg>`;
+											setTimeout(() => {
+													copyButton.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 512 512"><path fill="#888888" d="M472 16H160a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24m-8 328H168V48h296Z"/><path fill="#888888" d="M344 464H48V168h56v-32H40a24.027 24.027 0 0 0-24 24v312a24.027 24.027 0 0 0 24 24h312a24.027 24.027 0 0 0 24-24v-64h-32Z"/></svg>`;
+											}, 1000);
+									}
+							});
+					});
+					}
+			});
+</script>
