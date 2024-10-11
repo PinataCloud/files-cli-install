@@ -2,10 +2,11 @@
 set -euo pipefail
 
 GITHUB_REPO="https://github.com/PinataCloud/pinata-go-cli"
-CLI_NAME="pinata-go-cli"
+CLI_NAME="pinata-web3"
+REPO_NAME="pinata-go-cli"
 
 INSTALL_DIR="$HOME/.local/share"
-BIN_DIR="$INSTALL_DIR/pinata-go-cli"
+BIN_DIR="$INSTALL_DIR/$REPO_NAME"
 
 # Color codes for output
 RED='\033[0;31m'
@@ -62,14 +63,14 @@ detect_platform() {
 # Download and install the CLI
 install_cli() {
     local platform=$1
-    local download_url="${GITHUB_REPO}/releases/latest/download/pinata-go-cli_${platform}.tar.gz"
+    local download_url="${GITHUB_REPO}/releases/latest/download/${REPO_NAME}_${platform}.tar.gz"
     local temp_dir=$(mktemp -d)
 
     echo "Downloading ${CLI_NAME}..."
-    curl -L "$download_url" -o "$temp_dir/${CLI_NAME}.tar.gz" || error "Failed to download ${CLI_NAME}"
+    curl -L "$download_url" -o "$temp_dir/${REPO_NAME}.tar.gz" || error "Failed to download ${CLI_NAME}"
 
     echo "Extracting ${CLI_NAME}..."
-    tar -xzf "$temp_dir/${CLI_NAME}.tar.gz" -C "$temp_dir" || error "Failed to extract ${CLI_NAME}"
+    tar -xzf "$temp_dir/${REPO_NAME}.tar.gz" -C "$temp_dir" || error "Failed to extract ${CLI_NAME}"
 
     mkdir -p "$BIN_DIR" || error "Failed to create bin directory"
     mv "$temp_dir/${CLI_NAME}" "$BIN_DIR/" || error "Failed to move ${CLI_NAME} to bin directory"
