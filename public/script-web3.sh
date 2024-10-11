@@ -2,10 +2,10 @@
 set -euo pipefail
 
 GITHUB_REPO="https://github.com/PinataCloud/pinata-go-cli"
-CLI_NAME="pinata-web3"
+CLI_NAME="pinata-go-cli"
 
 INSTALL_DIR="$HOME/.local/share"
-BIN_DIR="$INSTALL_DIR/pinata-web3"
+BIN_DIR="$INSTALL_DIR/pinata-go-cli"
 
 # Color codes for output
 RED='\033[0;31m'
