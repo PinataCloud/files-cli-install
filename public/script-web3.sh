@@ -62,7 +62,7 @@ detect_platform() {
 # Download and install the CLI
 install_cli() {
     local platform=$1
-    local download_url="${GITHUB_REPO}/releases/latest/download/files-cli_${platform}.tar.gz"
+    local download_url="${GITHUB_REPO}/releases/latest/download/pinata-go-cli_${platform}.tar.gz"
     local temp_dir=$(mktemp -d)
 
     echo "Downloading ${CLI_NAME}..."
