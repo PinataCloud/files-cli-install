@@ -66,14 +66,19 @@ install_cli() {
     local download_url="${GITHUB_REPO}/releases/latest/download/${REPO_NAME}_${platform}.tar.gz"
     local temp_dir=$(mktemp -d)
 
-    echo "Downloading ${CLI_NAME}..."
-    curl -L "$download_url" -o "$temp_dir/${REPO_NAME}.tar.gz" || error "Failed to download ${CLI_NAME}"
+    echo "Downloading ${REPO_NAME}..."
+    curl -L "$download_url" -o "$temp_dir/${REPO_NAME}.tar.gz" || error "Failed to download ${REPO_NAME}"
 
-    echo "Extracting ${CLI_NAME}..."
-    tar -xzf "$temp_dir/${REPO_NAME}.tar.gz" -C "$temp_dir" || error "Failed to extract ${CLI_NAME}"
+    echo "Extracting ${REPO_NAME}..."
+    tar -xzf "$temp_dir/${REPO_NAME}.tar.gz" -C "$temp_dir" || error "Failed to extract ${REPO_NAME}"
 
     mkdir -p "$BIN_DIR" || error "Failed to create bin directory"
-    mv "$temp_dir/${CLI_NAME}" "$BIN_DIR/" || error "Failed to move ${CLI_NAME} to bin directory"
+
+    if [ ! -f "$temp_dir/${CLI_NAME}" ]; then
+        error "Executable ${CLI_NAME} not found in the extracted files"
+    fi
+
+    mv "$temp_dir/${CLI_NAME}" "$BIN_DIR/${CLI_NAME}" || error "Failed to move ${CLI_NAME} to bin directory"
     chmod +x "$BIN_DIR/${CLI_NAME}" || error "Failed to make ${CLI_NAME} executable"
 
     rm -rf "$temp_dir"
