@@ -9,8 +9,8 @@ import Code from "../components/Code.astro";
 	<h1>The Files CLI</h1>
 
 	<Code/>
+	<p>After installing, run <code>pinata auth</code> to get started! </p>
 			<a href="https://docs.pinata.cloud/tools/files-cli" target="_blank" rel="noreferrer">Docs</a>
-
 	</main>
 </Layout>
 
@@ -22,7 +22,15 @@ import Code from "../components/Code.astro";
 		justify-content: center;
 		align-items: center;
 		color: #EDF2F6;
+		font-family: sans-serif;
 	}
+
+	code {
+	background: #211D29;
+	padding: 0.5rem 0.75rem;
+	border-radius: 10px;
+	}
+
 
 	img {
 				width: 200px;
