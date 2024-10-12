@@ -1,54 +1,40 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Code from "../components/Code.astro";
+import { Code } from "../components/Code.tsx";
+import { Button } from "../components/ui/button";
+import "@/styles/globals.css";
 ---
 
 <Layout title="Files CLI">
-	<main>
-	<img src="/pinnie.svg" alt="pinnie" />
-	<h1>The Files CLI</h1>
+	<main class="flex flex-col gap-12 min-h-screen items-center justify-center text-[#EDF2F6] font-sans">
+	<img class="h-52 w-52" src="/pinnie.svg" alt="pinnie" />
+	<h1 class="text-5xl sm:text-7xl font-bold font-telegraf">The Files CLI</h1>
 
-	<Code/>
-	<p>After installing, run <code>pinata auth</code> to get started! </p>
+	<Code client:load/>
+	<p class="hidden sm:block">After installing, run <code class="bg-secondary py-2 px-3 rounded-md">pinata auth</code> to get started! </p>
+
+	<p class="block sm:hidden">Manage Pinata without having to leave the terminal</p>
+  	<Button className="text-current text-xl p-6" client:load>
 			<a href="https://docs.pinata.cloud/tools/files-cli" target="_blank" rel="noreferrer">Docs</a>
+		</Button>
 	</main>
 </Layout>
 
-<style>
-	main {
-		display: flex;
-		flex-direction: column;
-		min-height: 100vh;
-		justify-content: center;
-		align-items: center;
-		color: #EDF2F6;
-		font-family: sans-serif;
+<script is:inline>
+	const getThemePreference = () => {
+		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+			return localStorage.getItem('theme');
+		}
+		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark';
+	};
+	const isDark = getThemePreference() === 'dark';
+	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+
+	if (typeof localStorage !== 'undefined') {
+		const observer = new MutationObserver(() => {
+			const isDark = document.documentElement.classList.contains('dark');
+			localStorage.setItem('theme', isDark ? 'dark' : 'dark');
+		});
+		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
-
-	code {
-	background: #211D29;
-	padding: 0.5rem 0.75rem;
-	border-radius: 10px;
-	}
-
-
-	img {
-				width: 200px;
-		height: 200px;
-	}
-
-	h1 {
-			font-family: 'Telegraf', sans-serif;
-			font-weight: 700;
-			font-size: 60px;
-	}
-
-	a {
-			text-decoration: "underline";
-			color: #EDF2F6;
-			font-family: 'Telegraf', sans-serif;
-			font-size: 24px;
-				margin-top: 4rem;
-	}
-
-</style>
+</script>
