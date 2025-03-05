@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-GITHUB_REPO="https://github.com/PinataCloud/files-cli"
+GITHUB_REPO="https://github.com/PinataCloud/ipfs-cli"
 CLI_NAME="pinata"
 
 INSTALL_DIR="$HOME/.local/share"
@@ -62,7 +62,7 @@ detect_platform() {
 # Download and install the CLI
 install_cli() {
     local platform=$1
-    local download_url="${GITHUB_REPO}/releases/latest/download/files-cli_${platform}.tar.gz"
+    local download_url="${GITHUB_REPO}/releases/latest/download/ipfs-cli_${platform}.tar.gz"
     local temp_dir=$(mktemp -d)
 
     echo "Downloading ${CLI_NAME}..."
